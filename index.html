@@ -1,0 +1,91 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Web Code Editor</title>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"
+        rel="stylesheet"
+      />
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+      <div class="container">
+        <div class="file-explorer">
+          <div class="file-list">
+            <div class="file active" data-file="indexhtml">
+              <span class="file-icon">📄</span>
+              <span class="file-name">index.html</span>
+              <span class="close-btn">×</span>
+            </div>
+            <div class="file" data-file="stylescss">
+              <span class="file-icon">📄</span>
+              <span class="file-name">styles.css</span>
+              <span class="close-btn">×</span>
+            </div>
+            <div class="file" data-file="scriptjs">
+              <span class="file-icon">📄</span>
+              <span class="file-name">script.js</span>
+              <span class="close-btn">×</span>
+            </div>
+          </div>
+          <div class="new-file-btn">
+            <span class="file-icon">+</span>
+            <span>New File</span>
+          </div>
+        </div>
+        <div class="editor-container">
+          <div class="editor-tabs">
+            <div class="tab active" data-file="indexhtml">index.html</div>
+            <div class="tab" data-file="stylescss">styles.css</div>
+            <div class="tab" data-file="scriptjs">script.js</div>
+          </div>
+          <div class="editor">
+            <textarea
+              id="htmlEditor"
+              class="editor-pane indexhtml active"
+              title="HTML Editor"
+              placeholder="Enter HTML code here"
+            ></textarea>
+            <textarea
+              id="cssEditor"
+              class="editor-pane stylescss"
+              title="CSS Editor"
+              placeholder="Enter CSS code here"
+            ></textarea>
+            <textarea
+              id="jsEditor"
+              class="editor-pane scriptjs"
+              title="JavaScript Editor"
+              placeholder="Enter JavaScript code here"
+            ></textarea>
+          </div>
+        </div>
+        <div class="preview-container">
+          <div class="preview-header">
+            <span>Output</span>
+            <button id="runBtn">Run</button>
+          </div>
+          <div class="outputDiv">
+            <iframe id="preview">
+        
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+      <script src="./script.js"></script>
+      <!-- <script src="./app.js"></script> -->
+    </body>
+  </html>
