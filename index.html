@@ -4,15 +4,10 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Web Code Editor</title>
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"
-        rel="stylesheet"
-      />
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" href="style.css" />
+    </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/monokai.min.css">
+    <link rel="stylesheet" href="style.css" />
     </head>
 
     <body>
@@ -47,18 +42,20 @@
             <div class="tab" data-file="scriptjs">script.js</div>
           </div>
           <div class="editor">
-            <textarea
-              id="htmlEditor"
-              class="editor-pane indexhtml active"
-              title="HTML Editor"
-              placeholder="Enter HTML code here"
-            ></textarea>
+              <textarea
+                id="htmlEditor"
+                class="editor-pane indexhtml active"
+                title="HTML Editor"
+                placeholder="Enter HTML code here"
+              ></textarea>
+          
             <textarea
               id="cssEditor"
               class="editor-pane stylescss"
               title="CSS Editor"
               placeholder="Enter CSS code here"
             ></textarea>
+
             <textarea
               id="jsEditor"
               class="editor-pane scriptjs"
@@ -73,19 +70,16 @@
             <button id="runBtn">Run</button>
           </div>
           <div class="outputDiv">
-            <iframe id="preview">
-        
-            </iframe>
+            <iframe id="preview"></iframe>
           </div>
         </div>
       </div>
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ace.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.40.0/min/vs/loader.js"></script>
       <script src="./script.js"></script>
-      <!-- <script src="./app.js"></script> -->
     </body>
   </html>
