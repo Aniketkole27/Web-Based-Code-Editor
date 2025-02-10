@@ -1,6 +1,6 @@
-const htmlFile = document.getElementById('htmlEditor');
-const cssFile = document.getElementById('cssEditor');
-const jsFile = document.getElementById('jsEditor');
+// const htmlFile = document.getElementById('htmlEditor');
+// const cssFile = document.getElementById('cssEditor');
+// const jsFile = document.getElementById('jsEditor');
 const output = document.getElementById("preview").contentDocument;
 const runBtn = document.getElementById("runBtn");
 
@@ -8,42 +8,42 @@ runBtn.addEventListener('click', () => {
   updateOutput();
 })
 
-const html = () =>{
-  const htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlEditor"), {
-    mode: "html",
-    theme: "monokai",
-    lineNumbers: true,
-    matchBrackets: true,
-    // autoCloseTags: true
-  });
-}
+const htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlEditor"), {
+  mode: "htmlmixed",
+  theme: "monokai",
+  lineNumbers: true,
+  matchBrackets: true,
+  autoCloseTags: true,
+  indentUnit: 2,
+  smartIndent: false,
+  // extraKeys: {
+  //   "Enter": function(cm) {
+  //     cm.execCommand("newlineAndIndent");
+  //   }
+  // }
+});
 
-html()
-const css = ()=>{
-  const cssEditor = CodeMirror.fromTextArea(document.getElementById("cssEditor"), {
-    mode: "css",
-    theme: "monokai",
-    lineNumbers: true,
-    matchBrackets: true
-  });
-}
+const cssEditor = CodeMirror.fromTextArea(document.getElementById("cssEditor"), {
+  mode: "css",
+  theme: "monokai",
+  lineNumbers: true,
+  matchBrackets: true
+});
 
-const js = ()=>{
-  const jsEditor = CodeMirror.fromTextArea(document.getElementById("jsEditor"), {
-    mode: "javascript",
-    theme: "monokai",
-    lineNumbers: true,
-    matchBrackets: true
-  });
-}
+const jsEditor = CodeMirror.fromTextArea(document.getElementById("jsEditor"), {
+  mode: "javascript",
+  theme: "monokai",
+  lineNumbers: true,
+  matchBrackets: true
+});
+
 
 // Function to update the output
 function updateOutput() {
-  // const output = document.getElementById("preview").contentDocument;
-  
-  const htmlContent = htmlEditor.value;
-  const cssContent = cssEditor.value;
-  const jsContent = jsEditor.value;
+
+  const htmlContent = htmlEditor.getValue();
+  const cssContent = cssEditor.getValue();
+  const jsContent = jsEditor.getValue();
 
   const combinedContent = `
       <!DOCTYPE html>
@@ -120,9 +120,12 @@ function switchTab(editorId) {
   let f = document.querySelector(`.file[data-file="${editorId}"]`)
   let edit = document.querySelector(`.${editorId}`);
 
-  if(editorId === 'stylescss'){
+  if (editorId === 'stylescss') {
     css();
+  } else if (editorId === "scriptjs") {
+    js()
   }
+
 
   t.classList.add('active');
   f.classList.add('active');
