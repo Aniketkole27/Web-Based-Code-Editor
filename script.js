@@ -8,29 +8,81 @@ runBtn.addEventListener('click', () => {
   updateOutput();
 })
 
+const html = () =>{
+  const htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlEditor"), {
+    mode: "html",
+    theme: "monokai",
+    lineNumbers: true,
+    matchBrackets: true,
+    // autoCloseTags: true
+  });
+}
+
+html()
+const css = ()=>{
+  const cssEditor = CodeMirror.fromTextArea(document.getElementById("cssEditor"), {
+    mode: "css",
+    theme: "monokai",
+    lineNumbers: true,
+    matchBrackets: true
+  });
+}
+
+const js = ()=>{
+  const jsEditor = CodeMirror.fromTextArea(document.getElementById("jsEditor"), {
+    mode: "javascript",
+    theme: "monokai",
+    lineNumbers: true,
+    matchBrackets: true
+  });
+}
+
 // Function to update the output
 function updateOutput() {
-  const htmlContent = htmlFile.value;
-  const cssContent = cssFile.value;
-  const jsContent = jsFile.value;
+  // const output = document.getElementById("preview").contentDocument;
+  
+  const htmlContent = htmlEditor.value;
+  const cssContent = cssEditor.value;
+  const jsContent = jsEditor.value;
 
   const combinedContent = `
-          <!DOCTYPE html>
-          <html>
-              <head>
-                  <style>${cssContent}</style>
-              </head>
-              <body>
-                  ${htmlContent}
-                  <script>${jsContent}</script>
-              </body>
-          </html>
-      `;
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <style>
+          *{
+             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+           }
+          ${cssContent}
+          </style>
+      </head>
+      <body>
+          ${htmlContent}
+          <script>${jsContent}<\/script>
+      </body>
+      </html>
+  `;
 
   output.open();
   output.write(combinedContent);
   output.close();
 }
+
+
+function loadCode() {
+  let savedCode = localStorage.getItem("savedCode");
+  if (savedCode) {
+    document.getElementById("combinedContent").value = savedCode;
+  } else {
+    alert("No saved code found.");
+  }
+}
+
+// function saveCode() {
+//   let code = document.getElementById("code").value;
+//   localStorage.setItem("savedCode", code);
+//   alert("Code saved!");
+// }
 
 const editorPane = document.querySelectorAll('.editor-pane')
 const tabs = document.querySelectorAll('.tab')
@@ -38,8 +90,9 @@ const files = document.querySelectorAll('.file');
 
 files.forEach((file) => {
   file.addEventListener("click", (f) => {
-    let presentState = f.target.innerText;
-    presentState = presentState.replace(/\./g, "");
+    // let presentState = f.target.innerText;
+    // presentState = presentState.replace(/\./g, "");
+    let presentState = f.currentTarget.dataset.file;
     switchTab(presentState)
   })
 })
@@ -48,7 +101,7 @@ tabs.forEach((tab) => {
   tab.addEventListener('click', (e) => {
     let presentState = e.target.innerText;
     presentState = presentState.replace(/\./g, "");
-    switchTab(presentState)
+    switchTab(presentState);
   })
 })
 
@@ -63,11 +116,14 @@ function switchTab(editorId) {
     file.classList.remove("active");
   });
 
-  // const editor = document.getElementById(editorId);
   let t = document.querySelector(`.tab[data-file="${editorId}"]`)
   let f = document.querySelector(`.file[data-file="${editorId}"]`)
   let edit = document.querySelector(`.${editorId}`);
-  console.log(edit)
+
+  if(editorId === 'stylescss'){
+    css();
+  }
+
   t.classList.add('active');
   f.classList.add('active');
   edit.classList.add('active');
