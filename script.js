@@ -1,8 +1,9 @@
-// const htmlFile = document.getElementById('htmlEditor');
-// const cssFile = document.getElementById('cssEditor');
-// const jsFile = document.getElementById('jsEditor');
+const htmlFile = document.getElementById('htmlEditor');
+const cssFile = document.getElementById('cssEditor');
+const jsFile = document.getElementById('jsEditor');
 const output = document.getElementById("preview").contentDocument;
 const runBtn = document.getElementById("runBtn");
+
 
 runBtn.addEventListener('click', () => {
   updateOutput();
@@ -15,12 +16,7 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlEditor")
   matchBrackets: true,
   autoCloseTags: true,
   indentUnit: 2,
-  smartIndent: false,
-  // extraKeys: {
-  //   "Enter": function(cm) {
-  //     cm.execCommand("newlineAndIndent");
-  //   }
-  // }
+  smartIndent: false
 });
 
 const cssEditor = CodeMirror.fromTextArea(document.getElementById("cssEditor"), {
@@ -36,7 +32,6 @@ const jsEditor = CodeMirror.fromTextArea(document.getElementById("jsEditor"), {
   lineNumbers: true,
   matchBrackets: true
 });
-
 
 // Function to update the output
 function updateOutput() {
@@ -115,19 +110,45 @@ function switchTab(editorId) {
   document.querySelectorAll(".file").forEach((file) => {
     file.classList.remove("active");
   });
+  let activeEditor = document.querySelector(`.${editorId}`);
+  if (activeEditor) {
+    activeEditor.style.display = "block";
+  }
 
   let t = document.querySelector(`.tab[data-file="${editorId}"]`)
   let f = document.querySelector(`.file[data-file="${editorId}"]`)
-  let edit = document.querySelector(`.${editorId}`);
+  // let edit = document.querySelector(`.${editorId}`);
 
-  if (editorId === 'stylescss') {
-    css();
-  } else if (editorId === "scriptjs") {
-    js()
-  }
-
-
+ console.log(editorId);
   t.classList.add('active');
   f.classList.add('active');
-  edit.classList.add('active');
+  // edit.classList.add('active');
 }
+
+// function switchTab(editorId) {
+//   // Hide all editors
+//   document.querySelectorAll(".editor-pane").forEach((editor) => {
+//     editor.style.display = "none";
+//   });
+
+//   // Remove 'active' class from all tabs and files
+//   document.querySelectorAll(".tab").forEach((tab) => {
+//     tab.classList.remove("active");
+//   });
+//   document.querySelectorAll(".file").forEach((file) => {
+//     file.classList.remove("active");
+//   });
+
+//   // Show the selected editor
+//   let activeEditor = document.querySelector(`.${editorId}`);
+//   if (activeEditor) {
+//     activeEditor.style.display = "block";
+//   }
+
+//   // Add 'active' class to the selected tab and file
+//   let t = document.querySelector(`.tab[data-file="${editorId}"]`);
+//   let f = document.querySelector(`.file[data-file="${editorId}"]`);
+
+//   if (t) t.classList.add("active");
+//   if (f) f.classList.add("active");
+// }
